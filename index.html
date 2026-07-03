@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Palilia Lab Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --cream:#F5F8FC;
+    --paper:#FFFFFF;
+    --ink:#0E2B4E;
+    --ink-soft:#5C7996;
+    --rust:#1E7FE0;
+    --gold:#0D3B7A;
+    --line: rgba(14,43,78,0.13);
+    --line-strong: rgba(14,43,78,0.22);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; }
+
+  em{
+    font-family:'Fraunces', serif;
+    font-style: italic;
+    font-weight:500;
+    color: var(--rust);
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .eyebrow{
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position: sticky;
+    top:0;
+    z-index: 20;
+    background: rgba(244,239,226,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 28px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .brand{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand .wordmark{ font-family:'Fraunces', serif; font-weight:600; font-size: 1.15rem; }
+  .brand .tag{ font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+
+  .nav-links{ display:flex; align-items:center; gap: 26px; font-size: 0.85rem; }
+  .nav-links a{ text-decoration:none; color: var(--ink-soft); transition: color .2s ease; }
+  .nav-links a:hover{ color: var(--ink); }
+
+  .btn{
+    display:inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 9px 18px;
+    border-radius: 3px;
+    text-decoration:none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .btn:hover{ background: var(--rust); transform: translateY(-1px); }
+
+  @media (max-width: 640px){ .nav-links a:not(.btn){ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: 92px 0 64px; text-align:center; border-bottom: 1px solid var(--line); }
+  .hero .eyebrow{ margin-bottom: 18px; }
+
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 5.6vw, 3.7rem);
+    line-height: 1.1;
+    margin: 0 auto 22px;
+    max-width: 800px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p{ max-width: 600px; margin: 0 auto; color: var(--ink-soft); font-size: 1.02rem; line-height: 1.65; }
+
+  .stats{ display:flex; justify-content:center; flex-wrap: wrap; gap: 48px; margin-top: 52px; }
+  .stat{ text-align:center; }
+  .stat .num{ font-family:'Fraunces', serif; font-style: italic; font-weight: 500; font-size: 2.1rem; color: var(--rust); display:block; }
+  .stat .label{ font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin-top: 4px; }
+
+  /* ---------- Sections ---------- */
+  .section{ padding: 86px 0; border-bottom: 1px solid var(--line); }
+  .section-head{ max-width: 660px; margin-bottom: 52px; }
+  .section-head .eyebrow{ margin-bottom: 14px; }
+  .section-head h2{ font-family:'Fraunces', serif; font-weight: 500; font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin: 0 0 10px; line-height:1.2; }
+  .section-head .sub{ color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; margin:0; }
+
+  /* ---------- Featured builds ---------- */
+  .builds-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  @media (max-width: 720px){ .builds-grid{ grid-template-columns: 1fr; } }
+
+  .build-card{ background: var(--paper); padding: 34px 32px; display:flex; flex-direction:column; gap: 14px; transition: background .2s ease; }
+  .build-card:hover{ background: #FFFDF8; }
+
+  .build-top{ display:flex; align-items:center; justify-content:space-between; }
+  .build-code{ font-family:'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.05em; }
+
+  .status{ font-family:'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.05em; color: var(--rust); display:flex; align-items:center; gap: 6px; }
+  .status::before{ content:""; width: 6px; height: 6px; border-radius: 50%; background: var(--rust); display:inline-block; }
+
+  .build-card h3{ font-family:'Fraunces', serif; font-weight: 500; font-size: 1.45rem; margin: 0; }
+  .build-card p{ color: var(--ink-soft); font-size: 0.9rem; line-height: 1.55; margin: 0; flex-grow:1; }
+
+  .build-link{
+    display:inline-flex; align-items:center; gap: 6px;
+    font-size: 0.85rem; font-weight: 600; text-decoration: none; color: var(--ink);
+    border-bottom: 1px solid var(--ink); width: fit-content; padding-bottom: 1px;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .build-link:hover{ color: var(--rust); border-color: var(--rust); }
+
+  /* ---------- Manifest (full directory) ---------- */
+  .collection{ margin-bottom: 46px; }
+  .collection:last-child{ margin-bottom: 0; }
+
+  .collection-head{ display:flex; align-items:baseline; justify-content:space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .collection-head h3{ font-family:'Fraunces', serif; font-style: italic; font-weight: 500; font-size: 1.25rem; margin:0; }
+  .collection-count{ font-family:'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.04em; }
+
+  .manifest-list{ border: 1px solid var(--line); background: var(--paper); }
+  .manifest-row{
+    display:grid;
+    grid-template-columns: 1fr 2.2fr auto;
+    align-items:center;
+    gap: 18px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    text-decoration:none;
+    color: inherit;
+    transition: background .15s ease;
+  }
+  .manifest-row:last-child{ border-bottom:none; }
+  .manifest-row:hover{ background: #FFFDF8; }
+
+  .manifest-row .name{ font-family:'Fraunces', serif; font-weight: 500; font-size: 1rem; }
+  .manifest-row .desc{ color: var(--ink-soft); font-size: 0.85rem; line-height:1.4; }
+  .manifest-row .go{ font-family:'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--rust); white-space: nowrap; }
+
+  @media (max-width: 640px){
+    .manifest-row{ grid-template-columns: 1fr; gap: 4px; }
+    .manifest-row .go{ display:none; }
+  }
+
+  /* ---------- Footer ---------- */
+  footer{ padding: 60px 0 40px; }
+  .footer-top{ display:flex; justify-content:space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 48px; }
+  .footer-brand .wordmark{ font-family:'Fraunces', serif; font-weight: 600; font-size: 1.2rem; }
+  .footer-brand p{ color: var(--ink-soft); font-size: 0.85rem; max-width: 300px; margin-top: 8px; line-height:1.5; }
+
+  .footer-cols{ display:flex; gap: 56px; flex-wrap: wrap; }
+  .footer-col h4{ font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 14px; font-weight: 600; }
+  .footer-col a{ display:block; text-decoration:none; color: var(--ink); font-size: 0.88rem; margin-bottom: 10px; transition: color .2s ease; }
+  .footer-col a:hover{ color: var(--rust); }
+
+  .footer-bottom{ border-top: 1px solid var(--line); padding-top: 24px; display:flex; justify-content:space-between; flex-wrap: wrap; gap: 10px; font-size: 0.78rem; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="wordmark">The Palilia Lab Portfolio</span>
+      </div>
+      <div class="nav-links">
+        <a href="#featured">Featured</a>
+        <a href="#manifest">Full Manifest</a>
+        <a class="btn" href="#manifest">Browse All 34</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">A Palilia Lab Creation</p>
+      <h1>One ecosystem. <em>Endless exploration.</em></h1>
+      <p>Welcome to the world we created.</p>
+
+      <div class="stats">
+        <div class="stat"><span class="num">34</span><span class="label">Live Builds</span></div>
+        <div class="stat"><span class="num">05</span><span class="label">Collections</span></div>
+        <div class="stat"><span class="num">01</span><span class="label">Studio</span></div>
+        <div class="stat"><span class="num">∞</span><span class="label">Ideas Tested</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="featured">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Featured</p>
+        <h2>The anchors of the ecosystem.</h2>
+        <p class="sub">Six builds that hold the rest of the world together — start here, then browse the full manifest below.</p>
+      </div>
+
+      <div class="builds-grid">
+
+        <article class="build-card">
+          <div class="build-top"><span class="build-code">FEATURED</span><span class="status">Live</span></div>
+          <h3>Palilia Lab</h3>
+          <p>The rapid-prototyping and publishing studio behind every build on this page — origin of Ball Haus, Ungazi, and everything else.</p>
+          <a class="build-link" href="https://palilia-lab.vercel.app/" target="_blank" rel="noopener">Visit Palilia Lab →</a>
+        </article>
+
+        <article class="build-card">
+          <div class="build-top"><span class="build-code">FEATURED</span><span class="status">Live</span></div>
+          <h3>Chendeleza Africa</h3>
+          <p>Talent management for African football — player development, fan engagement, and return on investment under one roof.</p>
+          <a class="build-link" href="https://chendeleza.vercel.app/" target="_blank" rel="noopener">Visit Chendeleza →</a>
+        </article>
+
+        <article class="build-card">
+          <div class="build-top"><span class="build-code">FEATURED</span><span class="status">Live</span></div>
+          <h3>Index Athlete</h3>
+          <p>A verified player record and discovery platform — a footballer's CV, tracked, ranked, and built to get them found.</p>
+          <a class="build-link" href="https://index-athlete.vercel.app" target="_blank" rel="noopener">Explore Index Athlete →</a>
+        </article>
+
+        <article class="build-card">
+          <div class="build-top"><span class="build-code">FEATURED</span><span class="status">Live</span></div>
+          <h3>Ball Haus</h3>
+          <p>Clubs, challenges, and live rankings that turn shared interest into belonging — the community layer of the ecosystem.</p>
+          <a class="build-link" href="https://ballhaus.vercel.app" target="_blank" rel="noopener">Explore Ball Haus →</a>
+        </article>
+
+        <article class="build-card">
+          <div class="build-top"><span class="build-code">FEATURED</span><span class="status">Live</span></div>
+          <h3>Ungazi Stadium</h3>
+          <p>An 80,000-seat concept arena and home of AKAI FC — the long-term destination of the Kundiverse storyline.</p>
+          <a class="build-link" href="https://ungazi-stadium.vercel.app/" target="_blank" rel="noopener">Visit Ungazi Stadium →</a>
+        </article>
+
+        <article class="build-card">
+          <div class="build-top"><span class="build-code">FEATURED</span><span class="status">Live</span></div>
+          <h3>The Kundiverse</h3>
+          <p>The novel and fictional universe that Ungazi, AKAI FC, and the rest of the world are written from.</p>
+          <a class="build-link" href="https://the-kundiverse.vercel.app/" target="_blank" rel="noopener">Visit The Kundiverse →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="manifest" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Live Manifest</p>
+        <h2>Every build, by collection.</h2>
+        <p class="sub">The full roll, grouped the way the ecosystem itself is structured — from player development down to standalone product concepts.</p>
+      </div>
+
+      <div class="collection">
+        <div class="collection-head">
+          <h3>Sports &amp; Player Development</h3>
+          <span class="collection-count">06 builds</span>
+        </div>
+        <div class="manifest-list">
+          <a class="manifest-row" href="https://chendeleza.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Chendeleza Africa</span>
+            <span class="desc">Talent management studio — player development, fan engagement, ROI.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://index-athlete.vercel.app" target="_blank" rel="noopener">
+            <span class="name">Index Athlete</span>
+            <span class="desc">A verified player record and discovery platform for young footballers.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://walden-park.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Walden Park</span>
+            <span class="desc">A concept player-development facility taking shape in Bugesera, Rwanda.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://football-trend-radar.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Football Trend Radar</span>
+            <span class="desc">Tracks what's rising across African football — scholarships, trials, gear, pro journeys.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://the-frp.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">The Football Reclamation Project</span>
+            <span class="desc">A pathway programme turning released academy talent into football-industry professionals.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://trbtcc.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">TRBTCC</span>
+            <span class="desc">A weekly football breakfast that ties the ecosystem's partners together.</span>
+            <span class="go">Open ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="collection">
+        <div class="collection-head">
+          <h3>Ball Haus Clubs</h3>
+          <span class="collection-count">13 builds</span>
+        </div>
+        <div class="manifest-list">
+          <a class="manifest-row" href="https://ballhaus.vercel.app" target="_blank" rel="noopener">
+            <span class="name">Ball Haus</span>
+            <span class="desc">Clubs and challenges that turn shared interests into community and rank.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://ball-haus-biz.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Ball Haus Biz</span>
+            <span class="desc">The commercial layer — sponsors, clubs, and members earning verified commission.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://red-bird-smoky.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Red Bird</span>
+            <span class="desc">A martial-arts and mind-body dojo, built as a Ball Haus club.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://red-box-red.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Red Box</span>
+            <span class="desc">Where members sell partner products and earn real commissions.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://red-box-circuit.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Red Box Circuit</span>
+            <span class="desc">A motorsport track and challenge community adjacent to Walden Park.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://isikuti-soka.vercel.app" target="_blank" rel="noopener">
+            <span class="name">Isikuti Soka</span>
+            <span class="desc">Position-specific football training — five positions, five days, one rhythm.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://supadishi.vercel.app" target="_blank" rel="noopener">
+            <span class="name">Supadishi</span>
+            <span class="desc">Sports nutrition and meal plans built around local staples.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://samurai-fc.vercel.app" target="_blank" rel="noopener">
+            <span class="name">SamuraiFC</span>
+            <span class="desc">A football club concept built around crest, colour, and character.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://alkebulan-automotive.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Alkebulan Automotive</span>
+            <span class="desc">A home for car enthusiasts, home mechanics, and restorers.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://teazy.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Teazy</span>
+            <span class="desc">A fitness and mobility club with challenges and live rankings.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://exuviae-moulted.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Exuviae Moulted</span>
+            <span class="desc">A club for engineers, hackers, and hardware tinkerers.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://building-ungazi.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Building Ungazi</span>
+            <span class="desc">A writers' club and small-press community, open to any process.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://equatorial-polar-bear.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Equatorial Polar Bear</span>
+            <span class="desc">Bespoke African travel for athletes, investors, and explorers.</span>
+            <span class="go">Open ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="collection">
+        <div class="collection-head">
+          <h3>The Kundiverse <span style="font-style:normal; color:var(--ink-soft); font-size:0.85rem;">(fiction)</span></h3>
+          <span class="collection-count">08 builds</span>
+        </div>
+        <div class="manifest-list">
+          <a class="manifest-row" href="https://the-kundiverse.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">The Kundiverse</span>
+            <span class="desc">The novel and fictional universe the rest of Ungazi is written from.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://ungazi-stadium.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Ungazi Stadium</span>
+            <span class="desc">An 80,000-seat concept stadium — home of AKAI FC.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://ungazi-express.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Ungazi Express</span>
+            <span class="desc">A six-stop story train connecting the Kundiverse.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://akaifc.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">AKAI FC</span>
+            <span class="desc">A fan-owned football club concept, governed entirely by its supporters.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://kachapo-dsez.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Kachapo Harbour</span>
+            <span class="desc">The digital special economic zone of Ungazi.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://akai-shop.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">The AKAI Shop</span>
+            <span class="desc">A small community library, shared workspace, and maker-space.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://kcl-barbershop.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Kiti Cha Live Barbershop</span>
+            <span class="desc">An invite-only barbershop next to Walden Park.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://the-tuvo-ifunaka-band.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Tuvo Ifunaka Band</span>
+            <span class="desc">A fictional four-piece band recording the sound of Ungazi.</span>
+            <span class="go">Open ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="collection">
+        <div class="collection-head">
+          <h3>Product &amp; Commerce Concepts</h3>
+          <span class="collection-count">04 builds</span>
+        </div>
+        <div class="manifest-list">
+          <a class="manifest-row" href="https://kovenant.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Kovenant</span>
+            <span class="desc">An avocado and black-seed-oil product brand concept.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://jani-green.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Jani Green</span>
+            <span class="desc">A checkout concept built on scarce advertising and impulse saving.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://shamba-basket.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Shamba Basket</span>
+            <span class="desc">A farm-to-table grocery and meal-kit concept for Nairobi.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://hon-mocha.vercel.app" target="_blank" rel="noopener">
+            <span class="name">HoN</span>
+            <span class="desc">An early front-end experiment from the lab.</span>
+            <span class="go">Open ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="collection">
+        <div class="collection-head">
+          <h3>Studio &amp; Media</h3>
+          <span class="collection-count">03 builds</span>
+        </div>
+        <div class="manifest-list">
+          <a class="manifest-row" href="https://palilia-lab.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Palilia Lab</span>
+            <span class="desc">The rapid-prototyping and publishing studio behind everything on this page.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://waggle-dance-media.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Waggle Dance Media</span>
+            <span class="desc">Ad placement across the network's magazines, newsletters, and shows.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://atari-qaltondo.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Dr. Atari Qaltondo</span>
+            <span class="desc">A consultant persona site — turning ideas into working products, fast.</span>
+            <span class="go">Open ↗</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="wordmark">The Palilia Lab Portfolio</div>
+          <p>A running manifest of builds shipped out of the lab — 34 live, spanning five collections.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4>Browse</h4>
+            <a href="#featured">Featured Builds</a>
+            <a href="#manifest">Full Manifest</a>
+          </div>
+          <div class="footer-col">
+            <h4>Studio</h4>
+            <a href="https://palilia-lab.vercel.app/" target="_blank" rel="noopener">Palilia Lab ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 The Palilia Lab Portfolio. A Palilia Lab Creation.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

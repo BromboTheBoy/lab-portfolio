@@ -8,14 +8,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root{
-    --cream:#F5F8FC;
+    --cream:#E6EFFA;
     --paper:#FFFFFF;
-    --ink:#0E2B4E;
-    --ink-soft:#5C7996;
-    --rust:#1E7FE0;
-    --gold:#0D3B7A;
-    --line: rgba(14,43,78,0.13);
-    --line-strong: rgba(14,43,78,0.22);
+    --paper-tint:#EFF6FD;
+    --ink:#222649;
+    --ink-soft:#3A4B8C;
+    --rust:#386CAF;
+    --gold:#65A7D3;
+    --line:#CDDFEF;
+    --line-strong:#B2D3EB;
   }
 
   *{ box-sizing:border-box; }
@@ -57,7 +58,7 @@
     position: sticky;
     top:0;
     z-index: 20;
-    background: rgba(244,239,226,0.92);
+    background: rgba(230,239,250,0.92);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
   }
@@ -78,11 +79,12 @@
   .nav-links{ display:flex; align-items:center; gap: 26px; font-size: 0.85rem; }
   .nav-links a{ text-decoration:none; color: var(--ink-soft); transition: color .2s ease; }
   .nav-links a:hover{ color: var(--ink); }
+  .nav-links a.btn, .nav-links a.btn:hover{ color: #FFFFFF; }
 
   .btn{
     display:inline-block;
     background: var(--ink);
-    color: var(--cream);
+    color: #FFFFFF;
     padding: 9px 18px;
     border-radius: 3px;
     text-decoration:none;
@@ -127,7 +129,7 @@
   @media (max-width: 720px){ .builds-grid{ grid-template-columns: 1fr; } }
 
   .build-card{ background: var(--paper); padding: 34px 32px; display:flex; flex-direction:column; gap: 14px; transition: background .2s ease; }
-  .build-card:hover{ background: #FFFDF8; }
+  .build-card:hover{ background: var(--paper-tint); }
 
   .build-top{ display:flex; align-items:center; justify-content:space-between; }
   .build-code{ font-family:'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.05em; }
@@ -167,7 +169,7 @@
     transition: background .15s ease;
   }
   .manifest-row:last-child{ border-bottom:none; }
-  .manifest-row:hover{ background: #FFFDF8; }
+  .manifest-row:hover{ background: var(--paper-tint); }
 
   .manifest-row .name{ font-family:'Fraunces', serif; font-weight: 500; font-size: 1rem; }
   .manifest-row .desc{ color: var(--ink-soft); font-size: 0.85rem; line-height:1.4; }
@@ -227,7 +229,7 @@
       <div class="section-head">
         <p class="eyebrow">Featured</p>
         <h2>The anchors of the ecosystem.</h2>
-        <p class="sub">Six builds that hold the rest of the world together — start here, then browse the full manifest below.</p>
+        <p class="sub">Six builds that hold the rest of the world together — start here.</p>
       </div>
 
       <div class="builds-grid">
@@ -289,7 +291,7 @@
       <div class="collection">
         <div class="collection-head">
           <h3>Sports &amp; Player Development</h3>
-          <span class="collection-count">06 builds</span>
+          <span class="collection-count">07 builds</span>
         </div>
         <div class="manifest-list">
           <a class="manifest-row" href="https://chendeleza.vercel.app/" target="_blank" rel="noopener">
@@ -302,13 +304,8 @@
             <span class="desc">A verified player record and discovery platform for young footballers.</span>
             <span class="go">Open ↗</span>
           </a>
-          <a class="manifest-row" href="https://walden-park.vercel.app/" target="_blank" rel="noopener">
-            <span class="name">Walden Park</span>
-            <span class="desc">A concept player-development facility taking shape in Bugesera, Rwanda.</span>
-            <span class="go">Open ↗</span>
-          </a>
           <a class="manifest-row" href="https://football-trend-radar.vercel.app/" target="_blank" rel="noopener">
-            <span class="name">Football Trend Radar</span>
+            <span class="name">Football Trends Radar</span>
             <span class="desc">Tracks what's rising across African football — scholarships, trials, gear, pro journeys.</span>
             <span class="go">Open ↗</span>
           </a>
@@ -318,8 +315,18 @@
             <span class="go">Open ↗</span>
           </a>
           <a class="manifest-row" href="https://trbtcc.vercel.app/" target="_blank" rel="noopener">
-            <span class="name">TRBTCC</span>
+            <span class="name">TRB TCC</span>
             <span class="desc">A weekly football breakfast that ties the ecosystem's partners together.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://samurai-fc.vercel.app" target="_blank" rel="noopener">
+            <span class="name">Samurai FC</span>
+            <span class="desc">A football club concept built around crest, colour, and character.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://akaifc.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">AKAI FC</span>
+            <span class="desc">A fan-owned football club concept, governed entirely by its supporters.</span>
             <span class="go">Open ↗</span>
           </a>
         </div>
@@ -351,11 +358,6 @@
             <span class="desc">Where members sell partner products and earn real commissions.</span>
             <span class="go">Open ↗</span>
           </a>
-          <a class="manifest-row" href="https://red-box-circuit.vercel.app/" target="_blank" rel="noopener">
-            <span class="name">Red Box Circuit</span>
-            <span class="desc">A motorsport track and challenge community adjacent to Walden Park.</span>
-            <span class="go">Open ↗</span>
-          </a>
           <a class="manifest-row" href="https://isikuti-soka.vercel.app" target="_blank" rel="noopener">
             <span class="name">Isikuti Soka</span>
             <span class="desc">Position-specific football training — five positions, five days, one rhythm.</span>
@@ -364,11 +366,6 @@
           <a class="manifest-row" href="https://supadishi.vercel.app" target="_blank" rel="noopener">
             <span class="name">Supa Dishi</span>
             <span class="desc">Sports nutrition and meal plans built around local staples.</span>
-            <span class="go">Open ↗</span>
-          </a>
-          <a class="manifest-row" href="https://samurai-fc.vercel.app" target="_blank" rel="noopener">
-            <span class="name">SamuraiFC</span>
-            <span class="desc">A football club concept built around crest, colour, and character.</span>
             <span class="go">Open ↗</span>
           </a>
           <a class="manifest-row" href="https://alkebulan-automotive.vercel.app/" target="_blank" rel="noopener">
@@ -396,6 +393,16 @@
             <span class="desc">Bespoke African travel for athletes, investors, and explorers.</span>
             <span class="go">Open ↗</span>
           </a>
+          <a class="manifest-row" href="https://hon-mocha.vercel.app" target="_blank" rel="noopener">
+            <span class="name">HoN</span>
+            <span class="desc">An early front-end experiment from the lab.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://the-tuvo-ifunaka-band.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">The Tuvo Ifunaka Band</span>
+            <span class="desc">A fictional four-piece band recording the sound of Ungazi.</span>
+            <span class="go">Open ↗</span>
+          </a>
         </div>
       </div>
 
@@ -420,11 +427,6 @@
             <span class="desc">A six-stop story train connecting the Kundiverse.</span>
             <span class="go">Open ↗</span>
           </a>
-          <a class="manifest-row" href="https://akaifc.vercel.app/" target="_blank" rel="noopener">
-            <span class="name">AKAI FC</span>
-            <span class="desc">A fan-owned football club concept, governed entirely by its supporters.</span>
-            <span class="go">Open ↗</span>
-          </a>
           <a class="manifest-row" href="https://kachapo-dsez.vercel.app/" target="_blank" rel="noopener">
             <span class="name">Kachapo Harbour</span>
             <span class="desc">The digital special economic zone of Ungazi.</span>
@@ -440,9 +442,14 @@
             <span class="desc">An invite-only barbershop next to Walden Park.</span>
             <span class="go">Open ↗</span>
           </a>
-          <a class="manifest-row" href="https://the-tuvo-ifunaka-band.vercel.app/" target="_blank" rel="noopener">
-            <span class="name">Tuvo Ifunaka Band</span>
-            <span class="desc">A fictional four-piece band recording the sound of Ungazi.</span>
+          <a class="manifest-row" href="https://walden-park.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Walden Park</span>
+            <span class="desc">A concept player-development facility taking shape in Bugesera, Rwanda.</span>
+            <span class="go">Open ↗</span>
+          </a>
+          <a class="manifest-row" href="https://red-box-circuit.vercel.app/" target="_blank" rel="noopener">
+            <span class="name">Red Box Circuit</span>
+            <span class="desc">A motorsport track and challenge community adjacent to Walden Park.</span>
             <span class="go">Open ↗</span>
           </a>
         </div>
@@ -451,7 +458,7 @@
       <div class="collection">
         <div class="collection-head">
           <h3>Product &amp; Commerce Concepts</h3>
-          <span class="collection-count">04 builds</span>
+          <span class="collection-count">03 builds</span>
         </div>
         <div class="manifest-list">
           <a class="manifest-row" href="https://kovenant.vercel.app/" target="_blank" rel="noopener">
@@ -467,11 +474,6 @@
           <a class="manifest-row" href="https://shamba-basket.vercel.app/" target="_blank" rel="noopener">
             <span class="name">Shamba Basket</span>
             <span class="desc">A farm-to-table grocery and meal-kit concept for Nairobi.</span>
-            <span class="go">Open ↗</span>
-          </a>
-          <a class="manifest-row" href="https://hon-mocha.vercel.app" target="_blank" rel="noopener">
-            <span class="name">HoN</span>
-            <span class="desc">An early front-end experiment from the lab.</span>
             <span class="go">Open ↗</span>
           </a>
         </div>
